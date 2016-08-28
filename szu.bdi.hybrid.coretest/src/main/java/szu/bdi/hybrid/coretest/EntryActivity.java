@@ -11,7 +11,9 @@ public class EntryActivity extends szu.bdi.hybrid.core.HybridUi {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setUiData();
-        HybridTools.startUi("UiRoot", "{topbar:'N',url:'file:///android_asset/root.htm'}", this, WebViewUi.class);
+        HybridTools.startUi("UiRoot", "{topbar:'N',url:'file:///android_asset/root.htm'}", this
+//                , WebViewUi.class
+        );
         this.finish();
     }
 }

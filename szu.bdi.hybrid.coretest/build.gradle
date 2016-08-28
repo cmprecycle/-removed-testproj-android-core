@@ -1,14 +1,29 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '23.0.3'
+//compileSdkVersion 21
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+//buildToolsVersion '23.0.3'
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId 'szu.bdi.hybrid.coretest'
-//        minSdkVersion 19 //API 19 FOR KITKAT 4.4.2, before KITKAT have security problem.
-        minSdkVersion 9 //10 is 2.3.3
-        targetSdkVersion 21
+
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion ANDROID_BUILD_TARGET_SDK_VERSION
+
+        versionCode Integer.parseInt(project.ANDROID_BUILD_VERSION_CODE)
+        versionName ANDROID_BUILD_VERSION_NAME
+    }
+    buildTypes {
+        release {
+		//manifestPlaceholders = [build_type:"L"]
+		//minifyEnabled false
+		minifyEnabled true
+		shrinkResources true
+            	proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            	//signingConfig signingConfigs.release
+        }
     }
 }
 
@@ -17,6 +32,6 @@ dependencies {
     //for a app with such a WebView only, no more appcompat needed...
     //compile 'com.android.support:appcompat-v7:21.0.3'
 
-    compile project(':JsBridge')
+    //compile project(':JsBridge')
     compile project(':szu.bdi.hybrid.core')
 }
